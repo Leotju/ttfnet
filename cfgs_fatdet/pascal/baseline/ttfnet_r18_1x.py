@@ -18,7 +18,7 @@ model = dict(
         wh_conv=64,
         hm_head_conv_num=2,
         wh_head_conv_num=1,
-        num_classes=81,
+        num_classes=21,
         wh_offset_base=16,
         wh_agnostic=True,
         wh_gaussian=True,
@@ -38,6 +38,7 @@ test_cfg = dict(
 # dataset settings
 dataset_type = 'VOCDataset'
 data_root = '/vpalab/Data/VOCdevkit/'
+# data_root = '/media/leo/data/datasets/VOC/VOCdevkit/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
