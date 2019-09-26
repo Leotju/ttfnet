@@ -1,10 +1,11 @@
+norm_cfg = dict(type='GN', num_groups=32, requires_grad=True)
 # model settings
 model = dict(
     type='TTFNet',
     pretrained=None,
     backbone=dict(
         type='FatNet',
-        norm_cfg=dict(type='BN'),
+        norm_cfg=norm_cfg,
     ),
     neck=None,
     bbox_head=dict(
@@ -21,11 +22,10 @@ model = dict(
         wh_agnostic=True,
         wh_gaussian=True,
         shortcut_cfg=(1, 2, 3),
-        norm_cfg=dict(type='BN'),
+        norm_cfg=norm_cfg,
         alpha=0.54,
         hm_weight=1.,
-        upsample_sc=False,
-        wh_weight=5.))
+        wh_weight=0.5))
 cudnn_benchmark = True
 # training and testing settings
 train_cfg = dict(
@@ -77,7 +77,7 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'VOC2007/ImageSets/Main/test.txt',
         img_prefix=data_root + 'VOC2007/',
-        img_scale=(128, 128),
+        img_scale=(512, 512),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=0,
@@ -113,7 +113,7 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/fatdet/ttfnet_ttfnet_lr04_128_1x'
+work_dir = '../work_dirs/pascal/fatdet/ttfnet_ttfnet_lr04_128_1x_wh05'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]

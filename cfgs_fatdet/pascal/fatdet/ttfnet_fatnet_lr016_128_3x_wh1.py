@@ -22,6 +22,7 @@ model = dict(
         wh_gaussian=True,
         shortcut_cfg=(1, 2, 3),
         norm_cfg=dict(type='BN'),
+        upsample_sc=False,
         alpha=0.54,
         hm_weight=1.,
         wh_weight=0.5))
@@ -95,7 +96,7 @@ lr_config = dict(
     warmup='linear',
     warmup_iters=500,
     warmup_ratio=1.0 / 5,
-    step=[3])
+    step=[9, 11])
 checkpoint_config = dict(interval=1)
 bbox_head_hist_config = dict(
     model_type=['ConvModule', 'DeformConvPack'],
@@ -108,11 +109,12 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 4
+total_epochs = 12
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/fatdet/ttfnet_ttfnet_lr04_128_1x_wh05'
+work_dir = '../work_dirs/pascal/fatdet/ttfnet_ttfnet_lr016_128_3x_wh1'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
+
