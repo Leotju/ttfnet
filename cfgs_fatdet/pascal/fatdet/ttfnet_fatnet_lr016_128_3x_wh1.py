@@ -25,7 +25,7 @@ model = dict(
         upsample_sc=False,
         alpha=0.54,
         hm_weight=1.,
-        wh_weight=0.5))
+        wh_weight=1.0))
 cudnn_benchmark = True
 # training and testing settings
 train_cfg = dict(
