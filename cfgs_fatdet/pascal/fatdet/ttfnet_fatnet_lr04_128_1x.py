@@ -3,17 +3,20 @@ model = dict(
     type='TTFNet',
     pretrained=None,
     backbone=dict(
+        type='FatNet',
         norm_cfg=dict(type='BN'),
     ),
     neck=None,
     bbox_head=dict(
         type='TTFHead',
-        inplanes=(64, 128, 256, 512),
+        inplanes=(32, 32, 64, 128),
+        # planes=(64, 32, 32),
+        base_down_ratio=8,
         head_conv=128,
         wh_conv=64,
         hm_head_conv_num=2,
         wh_head_conv_num=1,
-        num_classes=81,
+        num_classes=21,
         wh_offset_base=16,
         wh_agnostic=True,
         wh_gaussian=True,
@@ -33,7 +36,7 @@ test_cfg = dict(
 # dataset settings
 dataset_type = 'VOCDataset'
 data_root = '/vpalab/Data/VOCdevkit/'
-data_root = '/media/leo/data/datasets/VOC/VOCdevkit/'
+# data_root = '/media/leo/data/datasets/VOC/VOCdevkit/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
@@ -49,7 +52,7 @@ data = dict(
                 data_root + 'VOC2012/ImageSets/Main/trainval.txt'
             ],
             img_prefix=[data_root + 'VOC2007/', data_root + 'VOC2012/'],
-            img_scale=(512, 512),
+            img_scale=(128, 128),
             img_norm_cfg=img_norm_cfg,
             size_divisor=32,
             flip_ratio=0.5,
@@ -83,7 +86,7 @@ data = dict(
         test_mode=True,
         resize_keep_ratio=False))
 # optimizer
-optimizer = dict(type='SGD', lr=0.002, momentum=0.9, weight_decay=0.0004,
+optimizer = dict(type='SGD', lr=0.04, momentum=0.9, weight_decay=0.0004,
                  paramwise_options=dict(bias_lr_mult=2., bias_decay_mult=0.))
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
@@ -109,7 +112,7 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet18_1x'
+work_dir = '../work_dirs/pascal/fatdet/ttfnet_ttfnet_lr04_128_1x'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]

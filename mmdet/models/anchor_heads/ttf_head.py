@@ -38,7 +38,10 @@ class TTFHead(AnchorHead):
                  beta=0.54,
                  hm_weight=1.,
                  wh_weight=5.,
-                 max_objs=128):
+                 max_objs=128,
+                 upsample_sc=False,
+
+                 ):
         super(AnchorHead, self).__init__()
         assert len(planes) in [2, 3, 4]
         shortcut_num = min(len(inplanes) - 1, len(planes))
@@ -59,7 +62,7 @@ class TTFHead(AnchorHead):
         self.wh_weight = wh_weight
         self.max_objs = max_objs
         self.fp16_enabled = False
-
+        self.upsample_sc = upsample_sc
         self.down_ratio = base_down_ratio // 2 ** len(planes)
         self.num_fg = num_classes - 1
         self.wh_planes = 4 if wh_agnostic else 4 * self.num_fg
@@ -103,6 +106,7 @@ class TTFHead(AnchorHead):
     def build_upsample(self, inplanes, planes, norm_cfg=None):
         mdcn = ModulatedDeformConvPack(inplanes, planes, 3, stride=1,
                                        padding=1, dilation=1, deformable_groups=1)
+
         up = nn.UpsamplingBilinear2d(scale_factor=2)
 
         layers = []
@@ -110,7 +114,8 @@ class TTFHead(AnchorHead):
         if norm_cfg:
             layers.append(build_norm_layer(norm_cfg, planes)[1])
         layers.append(nn.ReLU(inplace=True))
-        layers.append(up)
+        if self.upsample_sc:
+            layers.append(up)
 
         return nn.Sequential(*layers)
 

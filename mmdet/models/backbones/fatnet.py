@@ -23,7 +23,7 @@ BN_MOMENTUM = 0.1
 
 
 class Pang_unit(nn.Module):  #### basic unit
-    def __init__(self, cin, cout, bn, dilation=1, conv_cfg=None, norm_cfg=None):
+    def __init__(self, cin, cout, dilation=1, conv_cfg=None, norm_cfg=None):
         super(Pang_unit, self).__init__()
         self.branch0 = ConvModule(cin, cout, kernel_size=3, stride=1, padding=1, dilation=dilation, conv_cfg=conv_cfg,
                                   norm_cfg=norm_cfg)
@@ -37,7 +37,7 @@ class Pang_unit(nn.Module):  #### basic unit
 
 
 class Pang_unit_stride(nn.Module):  #### basic unit
-    def __init__(self, cin, cout, bn, dilation=1, conv_cfg=None, norm_cfg=None):
+    def __init__(self, cin, cout, dilation=1, conv_cfg=None, norm_cfg=None):
         super(Pang_unit_stride, self).__init__()
         self.branch0 = ConvModule(cin, cout, kernel_size=3, stride=2, padding=dilation, dilation=dilation,
                                   conv_cfg=conv_cfg, norm_cfg=norm_cfg)
@@ -62,7 +62,7 @@ class FatNet(nn.Module):
 
         # self.conv1 = ConvModule(3, 16, kernel_size=7, stride=2, padding=3, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
         self.stage_index = stage_index
-        self.features = self._make_layers_pangnet(conv_cfg=norm_cfg, norm_cfg=norm_cfg)
+        self.features = self._make_layers_pangnet(conv_cfg=conv_cfg, norm_cfg=norm_cfg)
 
     def _make_layers_pangnet(self, conv_cfg=None, norm_cfg=None):
         layers = nn.ModuleList()
