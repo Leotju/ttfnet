@@ -39,7 +39,7 @@ class TTFHead(AnchorHead):
                  hm_weight=1.,
                  wh_weight=5.,
                  max_objs=128,
-                 upsample_sc=False,
+                 upsample_sc=True,
 
                  ):
         super(AnchorHead, self).__init__()
