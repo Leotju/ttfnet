@@ -114,7 +114,7 @@ total_epochs = 12
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet18_3x_lr16_no_pre_train_bn'
+work_dir = '../work_dirs/pascal/baseline/ttfnet18_9x_lr16_no_pre_train_bn'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
