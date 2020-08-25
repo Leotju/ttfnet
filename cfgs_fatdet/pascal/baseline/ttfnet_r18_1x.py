@@ -37,8 +37,7 @@ test_cfg = dict(
     max_per_img=100)
 # dataset settings
 dataset_type = 'VOCDataset'
-data_root = '/vpalab/Data/VOCdevkit/'
-# data_root = '/media/leo/data/datasets/VOC/VOCdevkit/'
+data_root = '../data/VOCdevkit/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
@@ -54,7 +53,7 @@ data = dict(
                 data_root + 'VOC2012/ImageSets/Main/trainval.txt'
             ],
             img_prefix=[data_root + 'VOC2007/', data_root + 'VOC2012/'],
-            img_scale=(512, 512),
+            img_scale=(384, 384),
             img_norm_cfg=img_norm_cfg,
             size_divisor=32,
             flip_ratio=0.5,
