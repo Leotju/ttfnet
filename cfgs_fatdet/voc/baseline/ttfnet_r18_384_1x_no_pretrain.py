@@ -118,3 +118,4 @@ work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_1x_no_pretrain'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
+# 21.8

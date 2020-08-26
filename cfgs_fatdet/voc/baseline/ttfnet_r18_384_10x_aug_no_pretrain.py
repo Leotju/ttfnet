@@ -8,8 +8,9 @@ model = dict(
         depth=18,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
-        frozen_stages=1,
+        frozen_stages=-1,
         norm_eval=False,
+        zero_init_residual=False,
         style='pytorch'),
     neck=None,
     bbox_head=dict(
@@ -126,7 +127,8 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_10x_aug_no_pretrain'
+work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_10x_aug_no_pretrain_v2'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
+# 53.6
