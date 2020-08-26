@@ -12,6 +12,7 @@ model = dict(
         type='TTFHead',
         inplanes=(16, 16, 16, 16),
         head_conv=128,
+        base_down_ratio=8,
         wh_conv=64,
         hm_head_conv_num=2,
         wh_head_conv_num=1,
