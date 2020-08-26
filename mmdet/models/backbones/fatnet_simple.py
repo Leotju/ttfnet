@@ -30,11 +30,11 @@ class FatNetSimple(nn.Module):
                  ):
         super(FatNetSimple, self).__init__()
 
-        self.conv1 = ConvModule(3, 64, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
-        self.conv2 = ConvModule(64, 64, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
-        self.conv3 = ConvModule(64, 64, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
-        self.conv4 = ConvModule(64, 64, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
-        self.conv5 = ConvModule(64, 64, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv1 = ConvModule(3, 16, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv2 = ConvModule(16, 16, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv3 = ConvModule(16, 16, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv4 = ConvModule(16, 16, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv5 = ConvModule(16, 16, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
 
     def forward(self, x):
         output = []
