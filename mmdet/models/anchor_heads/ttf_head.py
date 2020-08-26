@@ -234,10 +234,6 @@ class TTFHead(AnchorHead):
     def loss(self,
              pred_heatmap,
              pred_wh,
-
-
-
-
              gt_bboxes,
              gt_labels,
              img_metas,
