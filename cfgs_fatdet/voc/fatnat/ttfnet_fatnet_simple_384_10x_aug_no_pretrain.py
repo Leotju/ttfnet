@@ -18,7 +18,7 @@ model = dict(
         hm_head_conv_num=2,
         wh_head_conv_num=1,
         num_classes=21,
-        wh_offset_base=1,
+        wh_offset_base=2,
         wh_agnostic=True,
         wh_gaussian=True,
         shortcut_cfg=(1, 2, 3),
@@ -125,7 +125,7 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet_fatnet_simple_384_10x_aug_no_pretrain'
+work_dir = '../work_dirs/pascal/baseline/ttfnet_fatnet_simple_384_10x_aug_no_pretrain_v2'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
