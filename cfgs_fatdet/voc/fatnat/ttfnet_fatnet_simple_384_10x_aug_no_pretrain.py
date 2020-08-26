@@ -11,6 +11,7 @@ model = dict(
     bbox_head=dict(
         type='TTFHead',
         inplanes=(16, 16, 16, 16),
+        planes=(16, 16, 16),
         head_conv=16,
         base_down_ratio=8,
         wh_conv=16,
