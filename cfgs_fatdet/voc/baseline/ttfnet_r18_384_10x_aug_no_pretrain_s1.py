@@ -18,6 +18,7 @@ model = dict(
         inplanes=(64, 128, 256, 512),
         head_conv=128,
         base_down_ratio=8,
+        upsample_sc=True,
         wh_conv=64,
         hm_head_conv_num=2,
         wh_head_conv_num=1,
