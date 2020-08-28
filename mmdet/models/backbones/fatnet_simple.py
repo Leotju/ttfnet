@@ -70,12 +70,12 @@ class FatNetSimple(nn.Module):
         self.conv9 = conv_duc(16, 16, stride=8, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
         self.conv10 = conv_duc(16, 16, stride=8, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
 
-        self.conv11 = conv_duc(16, 16, stride=8, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
-        self.conv12 = conv_duc(16, 16, stride=8, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
-        self.conv13 = conv_duc(16, 16, stride=8, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv11 = conv_duc(16, 16, stride=16, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv12 = conv_duc(16, 16, stride=16, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
+        self.conv13 = conv_duc(16, 16, stride=16, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
 
 
-
+        self.conv_dim = ConvModule(16, 64, kernel_size=3, stride=1, padding=1, conv_cfg=conv_cfg, norm_cfg=norm_cfg)
 
 
 
@@ -98,6 +98,7 @@ class FatNetSimple(nn.Module):
         x = self.conv11(x)
         x = self.conv12(x)
         x = self.conv13(x)
+        x = self.conv_dim(x)
         output.append(x)
         # print(x.size())
 
