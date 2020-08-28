@@ -168,7 +168,7 @@ class TTFHead(AnchorHead):
                 if i < len(self.shortcut_layers):
                     shortcut = self.shortcut_layers[i](feats[-i - 2])
                     x = x + shortcut
-        x = F.interpolate(x, scale_factor=4)
+            x = F.interpolate(x, scale_factor=4)
         hm = self.hm(x)
         wh = F.relu(self.wh(x)) * self.wh_offset_base
 
@@ -439,6 +439,7 @@ class TTFHead(AnchorHead):
         """
         H, W = pred_hm.shape[2:]
         pred_hm = torch.clamp(pred_hm.sigmoid_(), min=1e-4, max=1 - 1e-4)
+        # print(pred_hm.size(), heatmap.size())
         hm_loss = ct_focal_loss(pred_hm, heatmap) * self.hm_weight
 
         mask = wh_weight.view(-1, H, W)

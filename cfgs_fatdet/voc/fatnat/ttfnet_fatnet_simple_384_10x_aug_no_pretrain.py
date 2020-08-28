@@ -41,7 +41,7 @@ data_root = '../data/VOCdevkit/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
-    imgs_per_gpu=4,
+    imgs_per_gpu=16,
     workers_per_gpu=2,
     train=dict(
         type='RepeatDataset',  # to avoid reloading datasets frequently
@@ -99,7 +99,7 @@ data = dict(
         test_mode=True,
         resize_keep_ratio=False))
 # optimizer
-optimizer = dict(type='SGD', lr=0.004, momentum=0.9, weight_decay=0.0004,
+optimizer = dict(type='SGD', lr=0.016, momentum=0.9, weight_decay=0.0004,
                  paramwise_options=dict(bias_lr_mult=2., bias_decay_mult=0.))
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy

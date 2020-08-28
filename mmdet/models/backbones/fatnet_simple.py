@@ -99,7 +99,7 @@ class FatNetSimple(nn.Module):
         x = self.conv12(x)
         x = self.conv13(x)
         output.append(x)
-
+        # print(x.size())
 
         return tuple(output)
 
