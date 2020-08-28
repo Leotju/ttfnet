@@ -125,7 +125,8 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet_fatnet_simple_384_10x_aug_no_pretrain_v2'
+work_dir = '../work_dirs/pascal/baseline/ttfnet_fatnet_simple_384_10x_aug_no_pretrain_v3'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
+#
