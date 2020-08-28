@@ -17,6 +17,7 @@ model = dict(
         type='TTFHead',
         inplanes=(64, 128, 256, 512),
         head_conv=128,
+        base_down_ratio=8,
         wh_conv=64,
         hm_head_conv_num=2,
         wh_head_conv_num=1,
@@ -127,7 +128,7 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_10x_aug_no_pretrain_v2'
+work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_10x_aug_no_pretrain_s1'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
