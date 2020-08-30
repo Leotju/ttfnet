@@ -1,16 +1,14 @@
 # model settings
 model = dict(
     type='TTFNet',
-    # pretrained='modelzoo://resnet18',
-    pretrained=None,
+    pretrained='modelzoo://resnet18',
     backbone=dict(
         type='ResNet',
         depth=18,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
-        frozen_stages=-1,
+        frozen_stages=1,
         norm_eval=False,
-        zero_init_residual=False,
         style='pytorch'),
     neck=None,
     bbox_head=dict(
@@ -20,13 +18,13 @@ model = dict(
         wh_conv=64,
         hm_head_conv_num=2,
         wh_head_conv_num=1,
+        base_down_ratio=8,
         num_classes=21,
-        wh_offset_base=16,
+        wh_offset_base=2,
         wh_agnostic=True,
         wh_gaussian=True,
         shortcut_cfg=(1, 2, 3),
         norm_cfg=dict(type='BN'),
-        upsample_sc=True,
         alpha=0.54,
         hm_weight=1.,
         wh_weight=5.))
@@ -48,7 +46,7 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type='RepeatDataset',  # to avoid reloading datasets frequently
-        times=30,
+        times=3,
         dataset=dict(
             type=dataset_type,
             ann_file=[
@@ -63,18 +61,6 @@ data = dict(
             with_mask=False,
             with_crowd=False,
             with_label=True,
-            extra_aug=dict(
-                photo_metric_distortion=dict(
-                    brightness_delta=32,
-                    contrast_range=(0.5, 1.5),
-                    saturation_range=(0.5, 1.5),
-                    hue_delta=18),
-                expand=dict(
-                    mean=img_norm_cfg['mean'],
-                    to_rgb=img_norm_cfg['to_rgb'],
-                    ratio_range=(1, 4)),
-                random_crop=dict(
-                    min_ious=(0.1, 0.3, 0.5, 0.7, 0.9), min_crop_size=0.3)),
             resize_keep_ratio=False)),
     val=dict(
         type=dataset_type,
@@ -128,8 +114,8 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_10x_aug_no_pretrain_s4_no_sc'
+work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_1x_no_sc_s1_wh_off2'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-# 61.2
+# 60.5
