@@ -165,9 +165,9 @@ class TTFHead(AnchorHead):
         if self.upsample_sc:
             for i, upsample_layer in enumerate(self.deconv_layers):
                 x = upsample_layer(x)
-                if i < len(self.shortcut_layers):
-                    shortcut = self.shortcut_layers[i](feats[-i - 2])
-                    x = x + shortcut
+                # if i < len(self.shortcut_layers):
+                #     shortcut = self.shortcut_layers[i](feats[-i - 2])
+                #     x = x + shortcut
             # x = F.interpolate(x, scale_factor=4)
         hm = self.hm(x)
         wh = F.relu(self.wh(x)) * self.wh_offset_base

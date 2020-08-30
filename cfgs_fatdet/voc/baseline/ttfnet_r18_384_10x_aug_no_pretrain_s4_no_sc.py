@@ -26,7 +26,7 @@ model = dict(
         wh_gaussian=True,
         shortcut_cfg=(1, 2, 3),
         norm_cfg=dict(type='BN'),
-        upsample_sc=False,
+        upsample_sc=True,
         alpha=0.54,
         hm_weight=1.,
         wh_weight=5.))
