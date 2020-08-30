@@ -20,7 +20,7 @@ model = dict(
         wh_head_conv_num=1,
         base_down_ratio=8,
         num_classes=21,
-        wh_offset_base=16,
+        wh_offset_base=1,
         wh_agnostic=True,
         wh_gaussian=True,
         shortcut_cfg=(1, 2, 3),
@@ -114,7 +114,7 @@ total_epochs = 4
 device_ids = range(8)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_1x_no_sc_s1'
+work_dir = '../work_dirs/pascal/baseline/ttfnet_r18_384_1x_no_sc_s1_wh_off1'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
