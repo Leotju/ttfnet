@@ -37,8 +37,6 @@ class TTFHeadFull(AnchorHead):
                  hm_weight=1.,
                  wh_weight=5.,
                  max_objs=128,
-                 upsample_sc=True,
-
                  ):
         super(AnchorHead, self).__init__()
         assert wh_area_process in [None, 'norm', 'log', 'sqrt']
