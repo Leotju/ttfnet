@@ -1,3 +1,2 @@
-./tools/dist_train.sh cfgs_fatdet/voc/baseline/ttfnet_r18_384_10x_aug_no_pretrain.py 2
-./tools/dist_train.sh cfgs_fatdet/voc/baseline/ttfnet_r18_384_1x.py 2
-./tools/dist_train.sh cfgs_fatdet/voc/baseline/ttfnet_r18_384_1x_no_pretrain.py 2
+sleep 3h
+./tools/dist_train.sh cfgs_fatdet/voc/fatnat/ttfnet_fatnet_ttfheadfull_96_10x_aug_no_pretrain_wh_off2.py 2
