@@ -168,7 +168,7 @@ class TTFHead(AnchorHead):
                 if i < len(self.shortcut_layers):
                     shortcut = self.shortcut_layers[i](feats[-i - 2])
                     x = x + shortcut
-            x = F.interpolate(x, scale_factor=4)
+            # x = F.interpolate(x, scale_factor=4)
         hm = self.hm(x)
         wh = F.relu(self.wh(x)) * self.wh_offset_base
 
