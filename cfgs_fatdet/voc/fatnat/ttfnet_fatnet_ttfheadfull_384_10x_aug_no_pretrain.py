@@ -23,7 +23,6 @@ model = dict(
         norm_cfg=dict(type='BN'),
         alpha=0.54,
         hm_weight=1.,
-        upsample_sc=False,
         wh_weight=5.))
 cudnn_benchmark = True
 # training and testing settings
